@@ -1,0 +1,11 @@
+fastapi
+gradio
+fastembed
+qdrant-client
+sqlmodel
+aiofiles
+pypdf
+python-multipart
+openai
+uvicorn
+python-dotenv
