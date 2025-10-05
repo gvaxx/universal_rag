@@ -93,3 +93,21 @@ class QdrantService:
             points_selector=models.PointIdsList(points=[document_id]),
         )
 
+    def delete_document_chunks(self, base_name: str, document_path: str) -> None:
+        """Delete all chunks belonging to a document identified by its path."""
+
+        client = self._get_client(base_name)
+        client.delete(
+            collection_name=base_name,
+            points_selector=models.FilterSelector(
+                filter=models.Filter(
+                    must=[
+                        models.FieldCondition(
+                            key="document_path",
+                            match=models.MatchValue(value=document_path),
+                        )
+                    ]
+                )
+            ),
+        )
+
