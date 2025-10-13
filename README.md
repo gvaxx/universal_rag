@@ -1,45 +1,45 @@
-# Universal RAG
+Universal RAG System
+====================
 
-## Project Structure
-```
-backend/
-  app/
-    api/
-    core/
-    models/
-    services/
-  data/
-    bases/
-      default/
-        .gitkeep
-requirements.txt
-.env.example
-.gitignore
+Описание
+--------
+Universal RAG System — модульная система Retrieval-Augmented Generation (RAG) с plugin-based архитектурой для гибкой замены провайдеров LLM, эмбеддингов и хранилищ документов/векторов.
+
+Установка
+---------
+1. Установите Python 3.9+
+2. Создайте и активируйте виртуальное окружение
+3. Установите зависимости:
+
+```bash
+pip install -r requirements.txt
 ```
 
-## Getting Started
-1. **Create and activate a virtual environment** (optional but recommended):
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-   ```
-2. **Install dependencies**: 
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Configure environment variables**: copy `.env.example` to `.env` and fill in the values.
-   ```bash
-   cp .env.example .env
-   ```
-4. **Run the FastAPI backend** (replace `app.main:app` with your ASGI application path when implemented):
-   ```bash
-   uvicorn app.main:app --reload --app-dir backend
-   ```
-5. **Run the Gradio interface** once implemented. For example, if you add an entry point in `backend/app/api/gradio_app.py`:
-   ```bash
-   python backend/app/api/gradio_app.py
-   ```
+Быстрый старт
+-------------
+1. Скопируйте `.env.example` в `.env` и заполните значения
+2. Запустите приложение:
 
-## Notes
-- Store your knowledge bases inside `backend/data/bases/`. A default location is prepared at `backend/data/bases/default/`.
-- Use the packages under `backend/app/` to organize core logic, services, and API routes for the Retrieval-Augmented Generation system.
+```bash
+python main.py
+```
+
+Архитектура
+-----------
+- **core**: базовые датаклассы и интерфейсы, чистые операции обработки текста
+- **providers**: плагины провайдеров (`embeddings`, `llm`, `storage`), регистрируемые через `ProviderRegistry`
+- **services**: сервисы высокого уровня: индексация, поиск, RAG пайплайн
+- **api**: презентационный слой (Gradio UI)
+- **utils**: вспомогательные утилиты (логирование)
+
+Как добавить новый провайдер
+----------------------------
+1. Создайте класс, реализующий соответствующий `ABC` из `src/providers/*/base.py`
+2. Зарегистрируйте провайдер через `ProviderRegistry.register(kind, name, provider_cls)`
+3. Используйте провайдер в сервисах через `ProviderRegistry.get(kind, name)`
+
+Лицензия
+--------
+MIT (по умолчанию; обновите при необходимости)
+
+

@@ -1,10 +1,7 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
-*.so
 
 # Distribution / packaging
 .Python
@@ -19,69 +16,43 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # Virtual environments
-.venv/
+.env
+.venv
+env/
 venv/
 ENV/
-env/
 env.bak/
+venv.bak/
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
+# Pytest
 .pytest_cache/
 
-# Jupyter Notebook
+# MyPy / Type checkers
+.mypy_cache/
+dmypy.json
+.pyre/
+
+# Jupyter
 .ipynb_checkpoints
 
-# pyenv
-.python-version
-
-# mypy
-.mypy_cache/
-.dmypy.json
-
-# pytype
-.pytype/
-
-# Caches
-*.log
-
-# IDEs and editors
+# VSCode / IDEs
 .vscode/
 .idea/
-*.swp
-*.swo
 
-# Environment
+# Logs
+*.log
+
+# Project-specific ignores
+data/bases/*/documents/*
+data/bases/*/cache.db
+data/bases/*/qdrant/
 .env
-.env.*
-!.env.example
 
-# Data
-backend/data/bases/*
-!backend/data/bases/
-!backend/data/bases/default/
-!backend/data/bases/default/.gitkeep
+
